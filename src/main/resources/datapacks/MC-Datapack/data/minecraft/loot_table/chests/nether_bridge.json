@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 9,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart_block",
+          "weight": 1,
+          "quality": 1
+        }
+      ]
+    },
+    {
+      "rolls": 9,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_nylium"
+        }
+      ]
+    },
+    {
+      "rolls": 9,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherrack",
+          "weight": 1,
+          "quality": 1
+        }
+      ]
+    }
+  ]
+}

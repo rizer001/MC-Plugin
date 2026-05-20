@@ -1,0 +1,142 @@
+# =========================
+# ⚡ ENERGY SYSTEM
+# =========================
+energy:
+
+  generator:
+    enabled: true
+    energy_per_fuel: 100
+    fuel_material: COAL
+    log: false
+
+  cable:
+    loss_per_tick: 1
+
+  battery:
+    drain_per_transfer: 5
+
+  balancer:
+    enabled: true
+
+# =========================
+# 🔌 CABLE NETWORK
+# =========================
+cables:
+  save_interval_ticks: 100
+
+# =========================
+# 💻 CODE PANEL SYSTEM
+# =========================
+codepanel:
+
+  max_length: 10
+  empty_char: "-"
+
+  keyboard_offset: 2
+
+  loading:
+    step_ticks: 5
+    step: 10
+    delay_after: 20
+
+  attempts:
+    max: 3
+    lock_time_seconds: 10
+
+  colors:
+    brackets: DARK_RED
+    code: WHITE
+
+  buttons:
+    normal: WHITE
+    reset: DARK_RED
+    enter: DARK_GREEN
+
+  sounds:
+    click: UI_BUTTON_CLICK
+    reset: BLOCK_LEVER_CLICK
+    step: BLOCK_NOTE_BLOCK_HAT
+    finish: BLOCK_NOTE_BLOCK_PLING
+    success: ENTITY_PLAYER_LEVELUP
+    fail: BLOCK_ANVIL_LAND
+
+  messages:
+    progress: "§fChecking code: §7{progress}%"
+    success: "§2✔ §aSuccess: §7Valid code."
+    error: "§4❌ §cError: §7Incorrect code, you have §e{attempts}§7/§e{max}§7 attempts."
+    locked: "§4❌ §cError: §7Panel locked. Try again in §e{time}§7s."
+    locked_now: "§4❌ §cError: §7Panel locked for §e{time}§7 seconds!"
+    no_config: "§4❌ §cError: §7Server doesn't have any codes in config!"
+
+# =========================
+# 🔐 VALID CODES (CODE PANEL)
+# =========================
+validcodes:
+
+  1:
+    code: "1234"
+    command: "say $entity opened door #1"
+
+  2:
+    code: "9990"
+    command: "function codepanel/code1 with entity $entity"
+
+  3:
+    code: "0000"
+    command: "give $entity diamond 1"
+
+# =========================
+# 🧪 ENERGY CRAFTING SYSTEM
+# =========================
+energycrafting:
+
+  enabled: true
+  require_network: true
+
+  energy_per_craft: 1000
+  allow_craft_without_energy: false
+
+  cable_search_radius: 2
+
+  block_preview_without_energy: true
+  block_craft_without_energy: true
+
+  consume_energy: true
+
+  debug: false
+
+  messages:
+
+    no_network: "§4❌ §cCrafting Table is not connected to energy network!"
+
+    no_energy: "§4❌ §cNot enough energy! §7Need §e{amount} §7energy."
+
+    disabled: "§cEnergy crafting is disabled in config!"
+
+# =========================
+# 🔧 CUSTOM CRAFTS
+# =========================
+crafts:
+
+  multimeter:
+
+    enabled: true
+
+    material: CLOCK
+
+    name: "§fMultimeter"
+
+    show_in_recipe_book: true
+
+    custom_tag: "isMultimeter"
+
+    recipe:
+
+      shape:
+        - "CRC"
+        - "RCR"
+        - "CRC"
+
+      ingredients:
+        C: COPPER_INGOT
+        R: REDSTONE

@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "minecraft:trial_chambers",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 200,
+    "separation": 0,
+    "spread_type": "triangular",
+    "salt": 493042294,
+    "frequency_reduction_method": "default",
+    "frequency": 1
+  }
+}

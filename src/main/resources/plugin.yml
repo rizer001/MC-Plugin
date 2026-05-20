@@ -1,0 +1,32 @@
+name: MC-Plugin
+
+version: 1.0
+
+main: com.mcplugin.Main
+
+api-version: "1.21.11"
+
+author: MrCotik337
+
+load: POSTWORLD
+
+commands:
+
+  cp:
+    description: Open code panel
+    usage: /cp
+
+  cp_click:
+    description: Internal code panel click command
+    usage: /cp_click
+
+  mcplugin:
+    description: Control the MC-Plugin
+    usage: /mcplugin
+    permission: mcplugin.reload
+
+permissions:
+
+  mcplugin.reload:
+    description: Allows plugin reload
+    default: op

@@ -1,0 +1,52 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:recovery_compass",
+      "components": {
+        "minecraft:item_model": "terf:tool/shrink_ray"
+      },
+      "count": 1
+    },
+    "title": {
+      "text": "Доктор для мобов",
+      "type": "text",
+      "color": "white",
+      "bold": false,
+      "italic": false,
+      "underlined": false,
+      "strikethrough": false,
+      "obfuscated": false
+    },
+    "description": {
+      "text": "Создайте измеритель здоровья.",
+      "type": "text",
+      "color": "gray",
+      "bold": false,
+      "italic": false,
+      "underlined": false,
+      "strikethrough": false,
+      "obfuscated": false
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:datapack/craft_locator",
+  "criteria": {
+    "1": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:healthmeter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "1"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

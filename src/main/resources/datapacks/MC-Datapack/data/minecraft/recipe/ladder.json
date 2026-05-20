@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "show_notification": true,
+  "group": "ladder",
+  "category": "misc",
+  "pattern": [
+    "1 1",
+    "111",
+    "1 1"
+  ],
+  "key": {
+    "1": [
+      "minecraft:iron_ingot"
+    ]
+  },
+  "result": {
+    "id": "minecraft:ladder",
+    "components": {
+      "minecraft:item_name": {
+        "text": "Металлическая лестница",
+        "type": "text",
+        "color": "white",
+        "bold": false,
+        "italic": false,
+        "underlined": false,
+        "strikethrough": false,
+        "obfuscated": false
+      }
+    },
+    "count": 1
+  }
+}

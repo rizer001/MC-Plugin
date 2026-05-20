@@ -1,0 +1,49 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:dragon_egg",
+      "count": 1
+    },
+    "title": {
+      "text": "Высокие температуры",
+      "type": "text",
+      "color": "white",
+      "bold": false,
+      "italic": false,
+      "underlined": false,
+      "strikethrough": false,
+      "obfuscated": false
+    },
+    "description": {
+      "text": "Переплавьте яйцо дракона в незерит, вы теперь богаты?",
+      "type": "text",
+      "color": "gray",
+      "bold": false,
+      "italic": false,
+      "underlined": false,
+      "strikethrough": false,
+      "obfuscated": false
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:datapack/end_village_find",
+  "criteria": {
+    "1": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:uncraft_degg"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "1"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

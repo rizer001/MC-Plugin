@@ -1,0 +1,2 @@
+execute in void as @a[gamemode=!survival,tag=!ChangeMode,distance=..10000] run tellraw @s [{"text":"На сервере запрещено менять режимы игры.","color":"white"}]
+execute in void run gamemode survival @a[tag=!ChangeMode,distance=..10000]

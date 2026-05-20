@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ancient_debris",
+          "weight": 1,
+          "quality": 1
+        }
+      ]
+    }
+  ]
+}
