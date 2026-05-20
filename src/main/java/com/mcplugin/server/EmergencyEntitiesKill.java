@@ -1,5 +1,6 @@
-package com.mcplugin;
+package com.mcplugin.server;
 
+import com.mcplugin.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;

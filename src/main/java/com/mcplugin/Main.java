@@ -2,15 +2,15 @@ package com.mcplugin;
 
 import com.mcplugin.cable.CableNetwork;
 import com.mcplugin.commands.PluginReloadCommand;
-import com.mcplugin.cp.CodePanelClick;
-import com.mcplugin.cp.CodePanelCommand;
+import com.mcplugin.cp.*;
 import com.mcplugin.crafting.MultimeterCraftListener;
 import com.mcplugin.database.*;
 import com.mcplugin.energy.*;
-import com.mcplugin.energy.crafting.EnergyWorkbenchManager;
-import com.mcplugin.energy.crafting.EnergyCraftingListener;
+import com.mcplugin.energy.crafting.*;
 import com.mcplugin.energy.visual.CableVisualTask;
+import com.mcplugin.guns.*;
 import com.mcplugin.listeners.*;
+import com.mcplugin.server.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
@@ -37,6 +37,9 @@ public class Main extends JavaPlugin {
     private BukkitTask balancerTask;
     private BukkitTask cableVisualTask;
     private BukkitTask overloadTask;
+
+    // 🔫 PISTOL TASK
+    private BukkitTask gunTask;
 
     private boolean tasksStarted = false;
 
@@ -91,6 +94,9 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PluginHideListener(), this);
         pm.registerEvents(new ServerBrandListener(), this);
 
+        // 🔫 GUN SYSTEM
+        pm.registerEvents(new GunListener(), this);
+
         startTasks();
 
         register("cp", new CodePanelCommand());
@@ -98,13 +104,11 @@ public class Main extends JavaPlugin {
         register("mcplugin", new PluginReloadCommand());
 
         getLogger().info("[PLUGIN] Plugin enabled!");
-        getLogger().info("[PLUGIN] Thanks for using this plugin! Report any bugs and contact with me in Discord: @error404_user.not.found");
     }
 
     private void installDatapack() {
 
         try {
-
             File worldFolder = Bukkit.getWorlds().get(0).getWorldFolder();
             File datapacksFolder = new File(worldFolder, "datapacks");
 
@@ -181,6 +185,9 @@ public class Main extends JavaPlugin {
         cableVisualTask = new CableVisualTask().runTaskTimer(this, 0L, 2L);
         overloadTask = new EmergencyEntitiesKill().runTaskTimer(this, 20L, 20L);
 
+        // 🔫 BULLET UPDATE TASK (ВАЖНО)
+        gunTask = new PlasmaProjectileTask().runTaskTimer(this, 1L, 1L);
+
         getLogger().info("[TASKS] Started all plugin tasks.");
     }
 
@@ -192,6 +199,8 @@ public class Main extends JavaPlugin {
         if (balancerTask != null) balancerTask.cancel();
         if (cableVisualTask != null) cableVisualTask.cancel();
         if (overloadTask != null) overloadTask.cancel();
+
+        if (gunTask != null) gunTask.cancel();
 
         tasksStarted = false;
     }
@@ -238,6 +247,5 @@ public class Main extends JavaPlugin {
         }
 
         getLogger().info("[PLUGIN] MC-Plugin disabled!");
-        getLogger().info("[PLUGIN] Goodbye!");
     }
 }
