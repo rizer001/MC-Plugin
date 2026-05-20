@@ -35,17 +35,9 @@ public class ServerBrandListener implements Listener {
             CraftPlayer craftPlayer =
                     (CraftPlayer) player;
 
-            FriendlyByteBuf buf =
-                    new FriendlyByteBuf(Unpooled.buffer());
-
-            // =========================
-            // FAKE BRAND
-            // =========================
-            buf.writeUtf("None");
-
             ClientboundCustomPayloadPacket packet =
                     new ClientboundCustomPayloadPacket(
-                            new BrandPayload(buf)
+                            new BrandPayload("Paper")
                     );
 
             craftPlayer.getHandle()

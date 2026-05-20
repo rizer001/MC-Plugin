@@ -89,7 +89,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new MultimeterCraftListener(), this);
         pm.registerEvents(new EnergyCraftingListener(), this);
         pm.registerEvents(new PluginHideListener(), this);
-        pm.registerEvents(new ServerBrandListener(this), this);
+        pm.registerEvents(new ServerBrandListener(), this);
 
         startTasks();
 
