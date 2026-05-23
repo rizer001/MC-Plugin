@@ -1,27 +1,23 @@
 package com.mcplugin.crafting;
 
+import com.mcplugin.Keys;
 import com.mcplugin.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
-
 import org.bukkit.inventory.meta.ItemMeta;
-
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.NamespacedKey;
 
-public class MultimeterCraftListener implements Listener {
+public class ShokerCraftListener implements Listener {
 
-    private static NamespacedKey KEY;
     private static NamespacedKey RECIPE_KEY;
 
     // =========================
@@ -29,8 +25,10 @@ public class MultimeterCraftListener implements Listener {
     // =========================
     public static void init() {
 
-        KEY = new NamespacedKey(Main.getInstance(), "is_multimeter");
-        RECIPE_KEY = new NamespacedKey(Main.getInstance(), "multimeter");
+        RECIPE_KEY = new NamespacedKey(
+                Main.getInstance(),
+                "shoker"
+        );
 
         registerRecipe();
     }
@@ -42,22 +40,26 @@ public class MultimeterCraftListener implements Listener {
 
         Main plugin = Main.getInstance();
 
-        ItemStack result = new ItemStack(Material.CLOCK);
-        ItemMeta meta = result.getItemMeta();
+        ItemStack result = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK);
 
+        ItemMeta meta = result.getItemMeta();
         if (meta == null) return;
 
-        meta.setDisplayName("§fMultimeter");
+        meta.setDisplayName("§bElectro Shoker");
+
+        meta.setLore(java.util.List.of(
+                "§7Stuns enemies with electricity."
+        ));
 
         meta.setItemModel(
-                org.bukkit.NamespacedKey.fromString("terf:tool/multimeter")
+                NamespacedKey.fromString("terf:tool/taser")
         );
 
         // =========================
-        // PDC TAG (isMultimeter:1b)
+        // PDC via Keys
         // =========================
         meta.getPersistentDataContainer().set(
-                KEY,
+                Keys.SHOCKER,
                 PersistentDataType.BYTE,
                 (byte) 1
         );
@@ -69,18 +71,26 @@ public class MultimeterCraftListener implements Listener {
         ShapedRecipe recipe = new ShapedRecipe(RECIPE_KEY, result);
 
         recipe.shape(
-                "IDI",
-                "DCD",
-                "IDI"
+                "123",
+                "456",
+                "789"
         );
 
-        recipe.setIngredient('I', Material.IRON_INGOT);
-        recipe.setIngredient('D', Material.DIAMOND);
-        recipe.setIngredient('C', Material.CLOCK);
+        recipe.setIngredient('1', Material.BLACK_CONCRETE);
+        recipe.setIngredient('2', Material.YELLOW_CONCRETE);
+        recipe.setIngredient('3', Material.BLAZE_ROD);
+
+        recipe.setIngredient('4', Material.YELLOW_CONCRETE);
+        recipe.setIngredient('5', Material.BLACK_CONCRETE);
+        recipe.setIngredient('6', Material.BREEZE_ROD);
+
+        recipe.setIngredient('7', Material.STICK);
+        recipe.setIngredient('8', Material.NETHERITE_SCRAP);
+        recipe.setIngredient('9', Material.NETHERITE_SCRAP);
 
         plugin.getServer().addRecipe(recipe);
 
-        plugin.getLogger().info("[MULTIMETER] Recipe registered with ITEM MODEL");
+        plugin.getLogger().info("[SHOCKER] Recipe registered with Keys system");
     }
 
     // =========================
@@ -90,28 +100,33 @@ public class MultimeterCraftListener implements Listener {
     public void onCraft(PrepareItemCraftEvent e) {
 
         Recipe recipe = e.getRecipe();
+
         if (!(recipe instanceof ShapedRecipe sr)) return;
 
         if (!sr.getKey().equals(RECIPE_KEY)) return;
 
         CraftingInventory inv = e.getInventory();
 
-        ItemStack result = new ItemStack(Material.CLOCK);
-        ItemMeta meta = result.getItemMeta();
+        ItemStack result = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK);
 
+        ItemMeta meta = result.getItemMeta();
         if (meta == null) return;
 
-        meta.setDisplayName("§fMultimeter");
+        meta.setDisplayName("§bElectro Shoker");
+
+        meta.setLore(java.util.List.of(
+                "§7Stuns enemies with electricity."
+        ));
 
         meta.setItemModel(
-                org.bukkit.NamespacedKey.fromString("terf:tool/multimeter")
+                NamespacedKey.fromString("terf:tool/taser")
         );
 
         // =========================
-        // PDC AGAIN (isMultimeter:1b)
+        // PDC via Keys
         // =========================
         meta.getPersistentDataContainer().set(
-                KEY,
+                Keys.SHOCKER,
                 PersistentDataType.BYTE,
                 (byte) 1
         );

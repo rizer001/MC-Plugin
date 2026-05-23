@@ -1,27 +1,24 @@
 package com.mcplugin.crafting;
 
+import com.mcplugin.Keys;
 import com.mcplugin.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
-
 import org.bukkit.inventory.meta.ItemMeta;
 
-import org.bukkit.persistence.PersistentDataType;
+import java.util.List;
 
-public class MultimeterCraftListener implements Listener {
+public class PlasmaCannonCraftListener implements Listener {
 
-    private static NamespacedKey KEY;
     private static NamespacedKey RECIPE_KEY;
 
     // =========================
@@ -29,8 +26,10 @@ public class MultimeterCraftListener implements Listener {
     // =========================
     public static void init() {
 
-        KEY = new NamespacedKey(Main.getInstance(), "is_multimeter");
-        RECIPE_KEY = new NamespacedKey(Main.getInstance(), "multimeter");
+        RECIPE_KEY = new NamespacedKey(
+                Main.getInstance(),
+                "plasma_cannon"
+        );
 
         registerRecipe();
     }
@@ -42,23 +41,26 @@ public class MultimeterCraftListener implements Listener {
 
         Main plugin = Main.getInstance();
 
-        ItemStack result = new ItemStack(Material.CLOCK);
+        ItemStack result = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK);
         ItemMeta meta = result.getItemMeta();
-
         if (meta == null) return;
 
-        meta.setDisplayName("§fMultimeter");
+        meta.setDisplayName("§fPhoton cannon");
+
+        meta.setLore(List.of(
+                "§7Shoots with echo_shard."
+        ));
 
         meta.setItemModel(
-                org.bukkit.NamespacedKey.fromString("terf:tool/multimeter")
+                NamespacedKey.fromString("terf:tool/photon_cannon")
         );
 
         // =========================
-        // PDC TAG (isMultimeter:1b)
+        // PDC via Keys (FIXED)
         // =========================
         meta.getPersistentDataContainer().set(
-                KEY,
-                PersistentDataType.BYTE,
+                Keys.PLASMA,
+                org.bukkit.persistence.PersistentDataType.BYTE,
                 (byte) 1
         );
 
@@ -69,18 +71,25 @@ public class MultimeterCraftListener implements Listener {
         ShapedRecipe recipe = new ShapedRecipe(RECIPE_KEY, result);
 
         recipe.shape(
-                "IDI",
-                "DCD",
-                "IDI"
+                "ABC",
+                "DEF",
+                "GHA"
         );
 
-        recipe.setIngredient('I', Material.IRON_INGOT);
-        recipe.setIngredient('D', Material.DIAMOND);
-        recipe.setIngredient('C', Material.CLOCK);
+        recipe.setIngredient('A', Material.PURPUR_BLOCK);
+        recipe.setIngredient('B', Material.GLASS_PANE);
+        recipe.setIngredient('C', Material.NETHER_STAR);
+
+        recipe.setIngredient('D', Material.ECHO_SHARD);
+        recipe.setIngredient('E', Material.HEART_OF_THE_SEA);
+        recipe.setIngredient('F', Material.GLASS_PANE);
+
+        recipe.setIngredient('G', Material.BREEZE_ROD);
+        recipe.setIngredient('H', Material.ECHO_SHARD);
 
         plugin.getServer().addRecipe(recipe);
 
-        plugin.getLogger().info("[MULTIMETER] Recipe registered with ITEM MODEL");
+        plugin.getLogger().info("[PHOTONCANNON] Recipe registered (Keys system)");
     }
 
     // =========================
@@ -90,29 +99,33 @@ public class MultimeterCraftListener implements Listener {
     public void onCraft(PrepareItemCraftEvent e) {
 
         Recipe recipe = e.getRecipe();
+
         if (!(recipe instanceof ShapedRecipe sr)) return;
 
         if (!sr.getKey().equals(RECIPE_KEY)) return;
 
         CraftingInventory inv = e.getInventory();
 
-        ItemStack result = new ItemStack(Material.CLOCK);
+        ItemStack result = new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK);
         ItemMeta meta = result.getItemMeta();
-
         if (meta == null) return;
 
-        meta.setDisplayName("§fMultimeter");
+        meta.setDisplayName("§fPhoton cannon");
+
+        meta.setLore(List.of(
+                "§7Shoots with echo_shard."
+        ));
 
         meta.setItemModel(
-                org.bukkit.NamespacedKey.fromString("terf:tool/multimeter")
+                NamespacedKey.fromString("terf:tool/photon_cannon")
         );
 
         // =========================
-        // PDC AGAIN (isMultimeter:1b)
+        // PDC via Keys (FIXED)
         // =========================
         meta.getPersistentDataContainer().set(
-                KEY,
-                PersistentDataType.BYTE,
+                Keys.PLASMA,
+                org.bukkit.persistence.PersistentDataType.BYTE,
                 (byte) 1
         );
 
